@@ -11,9 +11,11 @@ exports.criarProdutos = (req,res) => {
             quantidade, 
         ],
         (err) => {
-            if (err) return res.status(500).send('Erro ao cadastrar produto');
+
+        if (err) return res.status(500).send('Erro ao cadastrar produto');
             res.status(201).send('Produto cadastrado com sucesso!')
     });
+
 };
 
 exports.listarProdutos = (req,res) => {
