@@ -46,8 +46,14 @@ exports.atualizarTarefas = (req,res) => {
     const { id } = req.params;
     const { titulo, descricao, status } = req.body;
 
-    const query = 'UPDATE tarefas SET titulo = ?, descricao = ?, status = ? WHERE id = ?';
-    conexao.query(query, [titulo, descricao, status, id], (err, results) => {
+    let data_conclusao = null
+
+    if (status == 'concluida') {
+        data_conclusao = new Date();
+    }
+
+    const query = 'UPDATE tarefas SET titulo = ?, descricao = ?, status = ?, data_conclusao = ? WHERE id = ?';
+    conexao.query(query, [titulo, descricao, status, data_conclusao, id], (err, results) => {
         if (err) {
             return res.status(500).send('Erro ao atualizar');
         }
